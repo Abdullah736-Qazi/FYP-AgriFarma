@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ai recommendation page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Ai/ai.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body style="background-color:#1d3133;">
+    <div class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='Ai/public/agrifarmer-1-1@2x.png') }}" alt="">
+        </div>
+        <div class="language">
+            <label for="language">Language:</label>
+            <select name="language" id="language">
+                <option value="English">English</option>
+                <option value="Urdu">Urdu</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- container main -->
+    <div class="container-md" id="main-c">
+        <form id="predictionForm">
+           <div class="language-container">
+            <div class="city">
+                <label for="city" class="mycityheading" id="cityLabel"></label>
+              <select name="city" id="city">
+                <option value="Lahore" id="lahore">Lahore</option>
+                <option value="Chakwal" id="chakwal">Chakwal</option>
+                <option value="Mianwali" id="mianwali">Mianwali</option>
+                <option value="Sialkot" id="sialkot">Sialkot</option>
+                <option value="Multan" id="multan">Multan</option>
+              </select>
+            </div>
+           </div>
+          <div class="getbutton">
+            <button type="button" onclick="getRecommendedCrop()" id="getPredictionButton"></button>
+          </div>
+        </form>
+        <hr class="meriline">
+        <div class="display-flex">
+            <div id="mini-container">
+                <h3 id="welcomeHeading"></h3>
+                <p id="selectCityMessage"></p>
+                <h3>Life is better with <br>
+                <span class="aitext">Artificial Intelligence</span></h3>
+                <img src="{{ url_for('static', filename='Ai/public/my pic.png') }}" alt="">
+            </div>
+        </div>
+
+        <!-- card container (initially hidden) -->
+        <div class="container-fluid text-center" id="card-container" style="display: none;">
+            <div class="row row-cols-3" id="card-row">
+                <!-- Cards will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var translations = {
+            'Urdu': {
+                'cityLabel': 'شہر:',
+                'lahore': 'لاہور',
+                'chakwal': 'چکوال',
+                'mianwali': 'میانوالی',
+                'sialkot': 'سیالکوٹ',
+                'multan': 'ملتان',
+                'getPredictionButton': 'پیشگوئی حاصل کریں',
+                'welcomeHeading': 'ہمارے تجویزی نظام میں خوش آمدید!',
+                'selectCityMessage': 'براہ کرم اپنا شہر منتخب کریں تاکہ فصل کی تجویزیں دیکھیں۔'
+            },
+            'English': {
+                'cityLabel': 'City:',
+                'lahore': 'Lahore',
+                'chakwal': 'Chakwal',
+                'mianwali': 'Mianwali',
+                'sialkot': 'Sialkot',
+                'multan': 'Multan',
+                'getPredictionButton': 'Get Prediction',
+                'welcomeHeading': 'Welcome to our Recommendation System!',
+                'selectCityMessage': 'Please select your city to view crop recommendations.'
+            }
+        };
+
+        function translateToLanguage(language) {
+            document.getElementById('cityLabel').textContent = translations[language]['cityLabel'];
+            document.getElementById('lahore').textContent = translations[language]['lahore'];
+            document.getElementById('chakwal').textContent = translations[language]['chakwal'];
+            document.getElementById('mianwali').textContent = translations[language]['mianwali'];
+            document.getElementById('sialkot').textContent = translations[language]['sialkot'];
+            document.getElementById('multan').textContent = translations[language]['multan'];
+            document.getElementById('getPredictionButton').textContent = translations[language]['getPredictionButton'];
+            document.getElementById('welcomeHeading').textContent = translations[language]['welcomeHeading'];
+            document.getElementById('selectCityMessage').textContent = translations[language]['selectCityMessage'];
+        }
+
+        var languageSelect = document.getElementById('language');
+
+        languageSelect.addEventListener('change', function () {
+            var language = this.value;
+            translateToLanguage(language);
+        });
+
+        function createRecommendedCropCard(predicted_label) {
+            const cropsData = [
+                { name: "groundnuts", image: "/static/Ai/public/groundnut.jpg", description: "Grow Groundnuts with confidence! Our recommendation system suggests Groundnuts as an ideal crop for cultivation, providing valuable insights for a successful and fruitful harvest" },
+                { name: "rice", image: "{{ url_for('static', filename='Ai/public/path/to/rice.jpg') }}", description: "Grow Rice with confidence! Our recommendation system suggests Groundnuts as an ideal crop for cultivation, providing valuable insights for a successful and fruitful harvest" },
+                { name: "beans", image: "{{ url_for('static', filename='Ai/public/path/to/beans.jpg') }}", description: "Grow Beans with confidence! Our recommendation system suggests Groundnuts as an ideal crop for cultivation, providing valuable insights for a successful and fruitful harvest" },
+                
+            ];
+
+            const recommendedCropData = cropsData.find(crop => crop.name.toLowerCase() === predicted_label.toLowerCase());
+
+            if (recommendedCropData) {
+                const cardRow = document.getElementById("card-row");
+
+                const card = document.createElement("div");
+                card.className = "col";
+                card.innerHTML = `
+                    <div class="card" style="width: 18rem;" data-crop="${recommendedCropData.name}">
+                        <img src="${recommendedCropData.image}" class="card-img-top" alt="${recommendedCropData.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${recommendedCropData.name}</h5>
+                            <p class="card-text">${recommendedCropData.description}</p>
+                        </div>
+                        <div class="card-body">
+                            <!-- Add your suggestions button or link here -->
+                            
+                        </div>
+                    </div>
+                `;
+
+                // Append the recommended card to the row
+                cardRow.appendChild(card);
+
+                // Initialize the popover
+                const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+                const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                    return new bootstrap.Popover(popoverTriggerEl);
+                });
+
+                // Show the card container
+                document.getElementById("card-container").style.display = 'block';
+
+                // Center the card in the first row (2nd column)
+                cardRow.classList.add("justify-content-center");
+            }
+        }
+
+        function updateCardVisibility() {
+            var selectedCity = document.getElementById("custom-select-container").value;
+
+            // Clear the card row
+            document.getElementById("card-row").innerHTML = "";
+
+            // Create card for the recommended crop only
+            createRecommendedCropCard();
+
+            // If a city is selected, show the card container
+            if (selectedCity !== "Select Your City") {
+                // Hide the mini-container
+                document.getElementById("mini-container").style.display = 'none';
+
+                // Show the card container
+                document.getElementById("card-container").style.display = 'block';
+
+                // Center the card in the first row (2nd column)
+                document.getElementById("card-row").classList.add("justify-content-center");
+            }
+        }
+
+        function getRecommendedCrop() {
+            var selectedCity = document.getElementById("city").value;
+            var predicted_label;
+
+            switch (selectedCity) {
+                case "Lahore":
+                    predicted_label = "groundnuts";
+                    break;
+                case "Chakwal":
+                    predicted_label = "beans";
+                    break;
+                case "Multan":
+                    predicted_label = "groundnuts";
+                    break;
+                case "Mianwali":
+                    predicted_label = "beans";
+                    break;
+                case "Sialkot":
+                    predicted_label = "rice";
+                    break;
+                default:
+                    predicted_label = ""; // Default value if city not specified
+            }
+
+            console.log(`Selected City: ${selectedCity}`);
+            console.log(`Predicted Label: ${predicted_label}`);
+
+            // Clear existing cards
+            document.getElementById("card-row").innerHTML = '';
+
+            // Create card for the recommended crop only
+            createRecommendedCropCard(predicted_label);
+
+            // Hide mini-container
+            document.getElementById("mini-container").style.display = 'none';
+        }
+
+        // Translate to the initially selected language
+        translateToLanguage(languageSelect.value);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

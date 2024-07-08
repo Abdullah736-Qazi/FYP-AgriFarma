@@ -1,0 +1,180 @@
+<script>
+  // Fetch product data from Flask backend
+  fetch('/categories')//yahan end point dal qazi 
+    .then(response => response.json())
+    .then(data => {
+      const cardsContainer = document.getElementById('productCards');
+      data.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'image-container';
+
+        const cropImage = document.createElement('img');
+        cropImage.className = 'crop-image';
+        cropImage.src = `C:\\Users\\ABDULLAH\\Desktop\\project-stock\\uploads\\${product.image_filename}`;
+        cropImage.alt = 'Product Image';
+
+        const detailsContainer = document.createElement('div');
+        detailsContainer.className = 'details';
+
+        const productName = document.createElement('div');
+        productName.className = 'product-name';
+        productName.textContent = product.name;
+
+        const quantity = document.createElement('div');
+        quantity.className = 'quantity';
+        quantity.textContent = `Quantity: ${product.quantity}`;
+
+        const price = document.createElement('div');
+        price.className = 'price';
+        price.textContent = `$${product.price.toFixed(2)}`; // Fixed typo: crops -> product
+
+        const contactButton = document.createElement('a');
+        contactButton.href = `https://wa.me/${product.phone_number}`;
+        contactButton.className = 'contact-button';
+        contactButton.target = '_blank';
+        contactButton.textContent = 'Whatsapp ';
+
+        const whatsappIcon = document.createElement('i');
+        whatsappIcon.className = 'ri-whatsapp-line';
+        contactButton.appendChild(whatsappIcon);
+
+        // Call Me button
+        const callMeButton = document.createElement('a');
+        callMeButton.className = 'contact-button';
+        callMeButton.textContent = 'Call Me';
+        callMeButton.href = `tel:${product.phone_number}`;
+
+        const dealDoneContainer = document.createElement('div');
+        dealDoneContainer.className = 'deal-done-container';
+
+        const dealDoneText = document.createElement('span');
+        dealDoneText.textContent = 'Deal Done?';
+
+        const dealDoneCheckbox = document.createElement('input');
+        dealDoneCheckbox.type = 'checkbox';
+        dealDoneCheckbox.className = 'dealDone';
+
+        dealDoneContainer.appendChild(dealDoneText);
+        dealDoneContainer.appendChild(dealDoneCheckbox);
+
+        // Review Popup
+        const reviewPopup = createReviewPopup();
+
+        // Append elements to the card
+        imageContainer.appendChild(cropImage);
+        detailsContainer.appendChild(productName);
+        detailsContainer.appendChild(quantity);
+        detailsContainer.appendChild(price);
+        detailsContainer.appendChild(contactButton);
+        detailsContainer.appendChild(callMeButton);
+        detailsContainer.appendChild(dealDoneContainer);
+        detailsContainer.appendChild(reviewPopup);
+
+        card.appendChild(imageContainer);
+        card.appendChild(detailsContainer);
+
+        // Add the card to the container
+        cardsContainer.appendChild(card);
+
+        // Update the display of the review popup based on the checkbox state
+        dealDoneCheckbox.addEventListener('change', () => {
+          if (dealDoneCheckbox.checked) {
+            reviewPopup.style.display = 'flex';
+            // Hide checkbox after submitting review
+            reviewPopup.addEventListener('submitReview', () => {
+              dealDoneCheckbox.style.display = 'none';
+            });
+          } else {
+            reviewPopup.style.display = 'none';
+          }
+        });
+      });
+    })
+    .catch(error => console.error('Error fetching products:', error));
+
+  // Create the review popup structure
+  function createReviewPopup() {
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.id = 'reviewPopup';
+    popup.style.display = 'none';
+
+    const popupContent = document.createElement('div');
+    popupContent.className = 'popup-content';
+
+    const popupTitle = document.createElement('h2');
+    popupTitle.textContent = 'Rate your experience';
+
+    const starRating = document.createElement('div');
+    starRating.className = 'star-rating';
+    starRating.id = 'starRating';
+
+    const stars = Array.from({ length: 5 }, (_, index) => {
+      const star = document.createElement('span');
+      star.className = 'star';
+      star.dataset.rating = index + 1;
+      star.textContent = '★';
+      star.addEventListener('mouseover', handleStarMouseover);
+      star.addEventListener('click', handleStarClick);
+      starRating.appendChild(star);
+      return star;
+    });
+
+    const submitButton = document.createElement('button');
+    submitButton.className = 'submit-button';
+    submitButton.textContent = 'Submit';
+    submitButton.addEventListener('click', function () {
+      submitReview();
+      // Trigger a custom event when submitting the review
+      const event = new Event('submitReview');
+      popup.dispatchEvent(event);
+    });
+
+    popupContent.appendChild(popupTitle);
+    popupContent.appendChild(starRating);
+    popupContent.appendChild(submitButton);
+
+    popup.appendChild(popupContent);
+
+    return popup;
+  }
+
+  // Handle mouseover event on stars
+  function handleStarMouseover() {
+    const rating = this.dataset.rating;
+    resetStars();
+    highlightStars(rating);
+  }
+
+  // Handle click event on stars
+  function handleStarClick() {
+    const rating = this.dataset.rating;
+    resetStars();
+    highlightStars(rating);
+  }
+
+  // Reset stars to the default state
+  function resetStars() {
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => star.classList.remove('active'));
+  }
+
+  // Highlight stars up to the selected rating
+  function highlightStars(rating) {
+    const stars = document.querySelectorAll('.star');
+    for (let i = 0; i < rating; i++) {
+      stars[i].classList.add('active');
+    }
+  }
+
+  // Function to handle review submission
+  function submitReview() {
+    const popup = document.getElementById('reviewPopup');
+    popup.style.display = 'none';
+    alert('Thank you for your review!');
+    // You can replace this with your actual submission logic
+  }
+</script>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer login page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='farmer-login/login.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='farmer-login/public/agrifarmer-1-1@2x.png') }}" alt="">
+        </div>
+        <div class="language">
+          <label for="language" id="languageLabel">زبان:</label>
+          <select name="language" id="language">
+            <option value="English">انگریزی</option>
+            <option value="Urdu">اردو</option>
+          </select>
+        </div>
+    </div>
+    <!-- container -->
+    <div class="green-container">
+        <div class="divider">
+            <hr class="horizental-divider">
+        </div>
+        <div class="login-heading" id="loginHeading">
+            <h2> </h2>
+        </div>
+
+        <div class="inputsandimg">
+            <div class="login-form">
+                <form id="loginForm" action="{{ url_for('farmer_login') }}" class="login-form" method="post">
+                    <label for="phone_number" class="phonenumber" id="phoneNumberLabel">فون نمبر</label><br>
+                    <input type="tel" id="phone_number" name="phone_number" placeholder="03*********" required><br>
+                    <br>
+                    <label for="password" id="passwordLabel">پاس ورڈ</label><br>
+                    <input type="password" id="password" name="password" placeholder="*********" required><br><br>
+                    <br>
+                    <button type="button" class="login-btn" onclick="validateForm()" id="loginBtn">لاگ ان</button>
+                    <a href="{{ url_for('verification_forgetpass') }}" id="forgotPasswordLink">پاسورڈ بھول گئے؟</a>
+                </form>
+            </div>
+            <div class="login-img">
+                <img src="{{ url_for('static', filename='farmer-login/public/Guy with the key is trying to log into his account.png') }}" alt="">
+            </div>
+        </div>
+        
+    </div>
+  
+    <script>
+        var languageSelect = document.getElementById('language');
+
+        languageSelect.addEventListener('change', function () {
+            var language = this.value;
+            translateToLanguage(language);
+        });
+
+        function translateToLanguage(language) {
+            var translations = {
+                'Urdu': {
+                    'phoneNumberLabel': 'فون نمبر',
+                    'passwordLabel': 'پاس ورڈ',
+                    'loginBtn': 'لاگ ان',
+                    'loginHeading': 'لاگ ان',
+                    'languageLabel': 'زبان:',
+                    'forgotPasswordLink': 'پاسورڈ بھول گئے؟'
+                },
+                'English': {
+                    'phoneNumberLabel': 'Phone number',
+                    'passwordLabel': 'Password',
+                    'loginBtn': 'Login',
+                    'languageLabel': 'Language:',
+                    'forgotPasswordLink': 'Forgot password?'
+                }
+            };
+
+            document.getElementById('phoneNumberLabel').textContent = translations[language]['phoneNumberLabel'];
+            document.getElementById('passwordLabel').textContent = translations[language]['passwordLabel'];
+            document.getElementById('loginBtn').textContent = translations[language]['loginBtn'];
+            document.getElementById('languageLabel').textContent = translations[language]['languageLabel'];
+            document.getElementById('forgotPasswordLink').textContent = translations[language]['forgotPasswordLink'];
+        }
+
+        function validateForm() {
+            var phoneNumberInput = document.getElementById('phone_number').value;
+            var passwordInput = document.getElementById('password').value;
+
+            if (!phoneNumberInput || !passwordInput) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Check if the phone number starts with '03' and is exactly 11 digits long
+            if (!/^03\d{9}$/.test(phoneNumberInput)) {
+                alert('Please enter a valid 11-digit phone number starting with 03.');
+                return;
+            }
+
+            // Submit the form if all validations pass
+            document.getElementById('loginForm').submit();
+        }
+
+        // Translate to the initially selected language
+        translateToLanguage(languageSelect.value);
+    </script>
+</body>
+</html>

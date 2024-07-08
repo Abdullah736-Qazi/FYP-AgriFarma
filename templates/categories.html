@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category }} Products</title>  
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='categories/catagories.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='categories/global.css') }}" />
+    <style>
+         .mini-nav {
+      height: 45px;
+      padding: 0 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #EFEAE3;
+    }
+
+    .main-nav {
+      height: 120px;
+      padding: 0 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #EFEAE3;
+    }
+
+    .main-nav img {
+      height: 100px;
+      max-width: 100%;
+    }
+
+    .menu-items a {
+      font-size: 16px;
+    }
+
+    .logout a {
+      font-size: 16px;
+    }
+
+    /* Cards Container Styles */
+    #productCards {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .main-nav img {
+    height: 150px;
+    }
+    .product-image {
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 150px; /* Set maximum height */
+    }
+
+    .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .details {
+      padding: 15px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .quantity {
+      margin-bottom: 5px;
+    }
+
+    .price {
+      font-size: 16px;
+      color: #007bff; /* Adjust the color as needed */
+      margin-bottom: 10px;
+    }
+
+    .contact-button {
+      display: block;
+      width: 90%;
+      padding: 8px;
+      text-align: center;
+      background-color: #28a745; /* Adjust the color as needed */
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 2px;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="page1">
+        <div class="mini-nav">
+            </div>
+
+        <div class="main-nav">
+            <img src="{{ url_for('static', filename='categories/public/agrifarmer-1-1@2x.png') }}" alt="">
+            <div class="menu-items">
+                <a href="#"><i class="ri-home-2-line"></i>Home</a>
+                <a href="#"><i class="ri-store-2-line"></i>Market</a>
+            </div>
+            <div class="logout">
+                <a href="#">Logout <i class="ri-logout-box-r-line"></i></a>
+            </div>
+        </div>
+        <div id="productCards" class="cards-container">
+            {% if crops %}
+                {% for crop in crops %}
+                    <div class="card">
+                        <div class="details">
+                            <img src="{{ crop.image_url }}" alt="{{ crop.name }}" class="product-image"> 
+                            <div class="product-name">{{ crop.name }}</div>
+                            <div class="price">Price: {{ crop.price }} Rupees</div>
+                            <div class="quantity">Quantity: {{ crop.quantity }} mt</div>
+                            <a href="https://wa.me/{{ crop.phone_number }}" class="contact-button" target="_blank">Contact Seller</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-products">No products found for this category.</div>  
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

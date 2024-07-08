@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Farmer-dashboard/global.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='Farmer-dashboard/dashboard.css') }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='farmer-login/public/agrifarmer-1-1@2x.png') }}" alt="">
+        </div>
+        <div class="language">
+          <label for="language">Language:</label>
+          <select name="language" id="language">
+            <option value="English">English</option>
+            <option value="Urdu">Urdu</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="menu-container">
+        <div class="profile-logout">
+            <div class="profile">
+                <a href="{{ url_for('edit_profile', name=user_info['name'], phone=user_info['phone']) }}">
+                    <img src="{{ url_for('static', filename='Farmer-dashboard/public/Profile.png') }}" alt="" class="profileimg">
+                </a>
+                <h4 class="profile-heading" id="profileHeading">{{ user_info['name'] }}</h4>
+            </div>
+            <div class="logout" id="logoutButton">
+                <button class="logoutbtn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="main-menus">
+            <div class="addcrops">
+                <a href="{{ url_for('add_crop') }}" id="addCrop"><img src="{{ url_for('static', filename='Farmer-dashboard/public/Add properties.png') }}" alt="" class="crops"></a>
+                <h4 class="crop-heading" id="cropHeading">Add Crops</h4>
+            </div>
+            <div class="toprecommendations">
+                <a href="{{ url_for('get_prediction_route') }}" id="AI"><img src="{{ url_for('static', filename='Farmer-dashboard/public/Bot.png') }}" alt="" class="top"></a>
+                <h4 id="recommendationsHeading">Get Recommendations</h4>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table id="tbl">
+            <thead>
+                <tr>
+                    <th id="imageLabel"></th>
+                    <th id="nameLabel"></th>
+                    <th id="quantityLabel"></th>
+                    <th id="priceLabel"></th>
+                    <th id="deleteLabel"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if crops %}
+                {% for cropData in crops %}
+                <tr>
+                    <td><img src="/static/uploads/{{ cropData.image_filename }}" alt="Crop Image" width="100"></td>
+                    <td>{{ cropData.name }}</td>
+                    <td>{{ cropData.quantity }} <span id="metric"></span></td>
+                    <td>RS {{ cropData.price }}</td>
+                    <td><i class="fas fa-trash" onclick="deleteRow(this)"></i></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var languageSelect = document.getElementById('language');
+
+        languageSelect.addEventListener('change', function () {
+            var language = this.value;
+            translateToLanguage(language);
+        });
+
+        function translateToLanguage(language) {
+            var translations = {
+                'Urdu': {
+                    'profile': 'پروفائل',
+                    'logout': 'لاگ آؤٹ',
+                    'addCrop': 'فصلوں کو شامل کریں',
+                    'recommendations': 'سفارشات حاصل کریں'
+                },
+                'English': {
+                    'profile': 'Profile',
+                    'logout': 'Logout',
+                    'addCrop': 'Add Crops',
+                    'recommendations': 'Get Recommendations'
+                }
+            };
+
+            document.getElementById('profileHeading').textContent = translations[language]['profile'];
+            document.getElementById('logoutButton').getElementsByTagName('button')[0].textContent = translations[language]['logout'];
+            document.getElementById('cropHeading').textContent = translations[language]['addCrop'];
+            document.getElementById('recommendationsHeading').textContent = translations[language]['recommendations'];
+        }
+
+        function logout() {
+            window.location.href = "{{ url_for('farmer_login') }}";
+        }
+
+        // Translate to the initially selected language
+        translateToLanguage(languageSelect.value);
+    </script>
+</body>
+</html>

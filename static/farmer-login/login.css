@@ -1,0 +1,193 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #1D3133;
+}
+/* .header{
+    height: 200px;
+    display: flex;
+}
+.logo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+} */
+
+.header {
+  background-color: #1d3133;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  height: 200px;
+}
+
+.logo {
+  flex: 1; /* Take up available space */
+}
+
+.logo img {
+  max-height: 70%; /* Make sure the image doesn't exceed the height of the parent div */
+}
+
+.language {
+  flex: 1; /* Take up available space */
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: flex-end; /* Align items to the end of the container */
+}
+
+#language {
+  margin-left: 10px; 
+  margin-right: 40px;
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  border: transparent;/* Add some space between the logo and the select box */
+}
+
+/* green container */
+
+.divider{
+    display: flex;
+justify-content: center;
+padding-top: 30px;
+}
+.divider hr{
+    width: 20%;
+    height: 8px;
+    border: none;
+    background-color: #DBBF9D;
+    text-align: center;
+}
+.green-container{
+    background-color: #28494D;
+    height: 600px;
+    border-radius: 35px;
+}
+.login-heading{
+    margin: 80px;
+}
+.login-heading h2{
+    font-size: 50px;
+    color: white;
+    font-weight: bold;
+    text-align: start;
+}
+.inputsandimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -50px;
+}
+.inputs{
+    width: 50%;
+
+}
+.login-form label{
+    font-size: 35px;
+    color: white;
+}
+.login-form input{
+    width: 450px;
+    height: 35px;
+    border-radius: 25px;
+    font-size: 24px;
+    border: transparent;
+}
+.login-img{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-img img{
+    width: 60%;
+}
+.login-btn{
+    background-color: #1D3133;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 25px;
+    color: white;
+    margin-left: 30px;
+    font-size: 24px;
+}
+a{
+    color: white;
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+
+
+
+/* responvide moblaile */
+@media (max-width: 850px) {
+    /* General adjustments */
+    body {
+      font-size: 14px;
+      
+    }
+  
+    /* Header */
+    .header {
+      height: 200px;
+    }
+  
+    /* Green container */
+    .green-container {
+      height: auto;
+      width: 100%;
+      padding: 30px;
+    }
+  
+    .login-heading {
+      margin: 30px;
+    }
+  
+    .login-heading h2 {
+      font-size: 30px;
+    }
+  
+    .inputsandimg {
+      flex-direction: column-reverse;
+      align-items: center;
+      margin-top: 0;
+    }
+  
+    .inputs {
+      width: 100%;
+    }
+  
+    .login-form input {
+      width: 50%;
+      font-size: 18px;
+    }
+  
+    .login-img {
+      width: 40%;
+      margin-top: 20px;
+      margin-left: -250px;
+    
+    }
+  
+    .login-img img {
+      width: 100%;
+    }
+  
+    /* Login button and link */
+    .login-btn,
+    a {
+      margin-left: 0;
+      margin-bottom: 10px;
+      margin-right: 10px;
+    }
+  }

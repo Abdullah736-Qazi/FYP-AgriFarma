@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit-profile/global.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit-profile/editprofile.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body style="background-color: #1D3133;">
+    <div class="goback" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+
+    <div class="header">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='farmer-login/public/agrifarmer-1-1@2x.png') }}" alt="">
+        </div>
+        <div class="language">
+          <label for="language">Language:</label>
+          <select name="language" id="language">
+            <option value="English">English</option>
+            <option value="Urdu">Urdu</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="heading">Edit Profile</div>
+
+        <form id="profileForm">
+            <label for="name" id="nameLabel">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone-number" id="phoneLabel">Phone Number:</label>
+            <input type="tel" id="phone-number" name="phone" required>
+
+            <label for="password" id="passwordLabel">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password" id="confirmPasswordLabel">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <div class="button-container">
+                <button type="button" onclick="saveProfile()" id="saveButton">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var languageSelect = document.getElementById('language');
+
+        languageSelect.addEventListener('change', function () {
+            var language = this.value;
+            translateToLanguage(language);
+        });
+
+        function translateToLanguage(language) {
+            var translations = {
+                'Urdu': {
+                    'name': 'نام:',
+                    'phone': 'فون نمبر:',
+                    'password': 'پاسورڈ:',
+                    'confirmPassword': 'پاسورڈ کی تصدیق:',
+                    'save': 'محفوظ کریں'
+                },
+                'English': {
+                    'name': 'Name:',
+                    'phone': 'Phone Number:',
+                    'password': 'Password:',
+                    'confirmPassword': 'Confirm Password:',
+                    'save': 'Save'
+                }
+            };
+
+            document.getElementById('nameLabel').textContent = translations[language]['name'];
+            document.getElementById('phoneLabel').textContent = translations[language]['phone'];
+            document.getElementById('passwordLabel').textContent = translations[language]['password'];
+            document.getElementById('confirmPasswordLabel').textContent = translations[language]['confirmPassword'];
+            document.getElementById('saveButton').textContent = translations[language]['save'];
+        }
+
+        function goBack() {
+            history.back();
+        }
+
+        function saveProfile() {
+            const form = document.getElementById('profileForm');
+            const formData = new FormData(form);
+
+            fetch('/edit-profile', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Profile updated successfully!');
+                } else {
+                    alert('Failed to update profile. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Password does not match, please write the same password on both sections');
+            });
+        }
+
+        // Translate to the initially selected language
+        translateToLanguage(languageSelect.value);
+    </script>
+</body>
+
+</html>

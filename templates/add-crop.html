@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Crop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='add-crop/global.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='add-crop/addcrop.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Go back button -->
+    <div class="go-back" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+    
+    <div class="header">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='farmer-login/public/agrifarmer-1-1@2x.png') }}" alt="">
+        </div>
+        <div class="language">
+          <label for="language">Language:</label>
+          <select name="language" id="language">
+            <option value="English">English</option>
+            <option value="Urdu">Urdu</option>
+          </select>
+        </div>
+    </div>
+
+
+    <div class="heading">Add New Crop</div>
+    <div class="main-container">
+        <div class="form-container">
+            <form enctype="multipart/form-data" method="POST" action="/add-crop">
+                <div class="form-group">
+                    <label for="crop-name" class="label-name" id="cropNameLabel"></label>
+                    <select name="crop-name" id="crop-name">
+                        <option value="Rice" id="rice"></option>
+                        <option value="Wheat" id="wheat"></option>
+                        <option value="Cotton" id="cotton"></option>
+                        <option value="Sugarcane" id="sugarcane"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="crop-price" class="label-name" id="cropPriceLabel"></label>
+                    <input type="number" id="crop-price" name="crop-price" required>
+                </div>
+                <div class="form-group">
+                    <label for="crop-quantity" class="label-name" id="cropQuantityLabel"></label>
+                    <input type="number" id="crop-quantity" name="crop-quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="crop-image" class="label-name" id="cropImageLabel"></label>
+                    <input type="file" id="crop-image" name="crop-image" accept="image/*" required>
+                </div>
+                <button type="button" onclick="addCrop()" class="addcrop" id="addCropButton"></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <table id="tbl">
+            <thead>
+                <tr>
+                    <th id="imageLabel"></th>
+                    <th id="nameLabel"></th>
+                    <th id="quantityLabel"></th>
+                    <th id="priceLabel"></th>
+                    <th id="deleteLabel"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if crops %}
+                {% for cropData in crops %}
+                <tr>
+                    <td><img src="/static/uploads/{{ cropData.image_filename }}" alt="Crop Image" width="100"></td>
+                    <td>{{ cropData.name }}</td>
+                    <td>{{ cropData.quantity }} <span id="metric"></span></td>
+                    <td>RS {{ cropData.price }}</td>
+                    <td><i class="fas fa-trash" onclick="deleteRow(this)"></i></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var languageSelect = document.getElementById('language');
+
+        languageSelect.addEventListener('change', function () {
+            var language = this.value;
+            translateToLanguage(language);
+        });
+
+        function translateToLanguage(language) {
+            var translations = {
+                'Urdu': {
+                    'cropNameLabel': 'فصل کا نام:',
+                    'rice': 'چاول',
+                    'wheat': 'گندم',
+                    'cotton': 'کپاس',
+                    'sugarcane': 'گنا',
+                    'cropPriceLabel': 'فصل کی قیمت',
+                    'cropQuantityLabel': 'فصل کی مقدار',
+                    'cropImageLabel': 'فصل کی تصویر',
+                    'addCropButton': 'فصل شامل کریں',
+                    'imageLabel': 'تصویر',
+                    'nameLabel': 'نام',
+                    'quantityLabel': 'مقدار',
+                    'priceLabel': 'قیمت',
+                    'deleteLabel': 'حذف کریں',
+                    'metric': 'فی میٹرک ٹن'
+                },
+                'English': {
+                    'cropNameLabel': 'Crop Name:',
+                    'rice': 'Rice',
+                    'wheat': 'Wheat',
+                    'cotton': 'Cotton',
+                    'sugarcane': 'Sugarcane',
+                    'cropPriceLabel': 'Crop Price',
+                    'cropQuantityLabel': 'Crop Quantity',
+                    'cropImageLabel': 'Crop Image',
+                    'addCropButton': 'Add Crop',
+                    'imageLabel': 'Image',
+                    'nameLabel': 'Name',
+                    'quantityLabel': 'Quantity',
+                    'priceLabel': 'Price',
+                    'deleteLabel': 'Delete',
+                    'metric': 'Per Metric Ton'
+                }
+            };
+
+            document.getElementById('cropNameLabel').textContent = translations[language]['cropNameLabel'];
+            document.getElementById('rice').textContent = translations[language]['rice'];
+            document.getElementById('wheat').textContent = translations[language]['wheat'];
+            document.getElementById('cotton').textContent = translations[language]['cotton'];
+            document.getElementById('sugarcane').textContent = translations[language]['sugarcane'];
+            document.getElementById('cropPriceLabel').textContent = translations[language]['cropPriceLabel'];
+            document.getElementById('cropQuantityLabel').textContent = translations[language]['cropQuantityLabel'];
+            document.getElementById('cropImageLabel').textContent = translations[language]['cropImageLabel'];
+            document.querySelector('.addcrop').textContent = translations[language]['addCropButton'];
+            document.getElementById('imageLabel').textContent = translations[language]['imageLabel'];
+            document.getElementById('nameLabel').textContent = translations[language]['nameLabel'];
+            document.getElementById('quantityLabel').textContent = translations[language]['quantityLabel'];
+            document.getElementById('priceLabel').textContent = translations[language]['priceLabel'];
+            document.getElementById('deleteLabel').textContent = translations[language]['deleteLabel'];
+            document.getElementById('metric').textContent = translations[language]['metric'];
+        }
+
+        function goBack() {
+            history.back();
+        }
+
+        function addCrop() {
+            const cropName = document.getElementById("crop-name").value;
+            const cropPrice = document.getElementById("crop-price").value;
+            const cropQuantity = document.getElementById("crop-quantity").value;
+            const cropImage = document.getElementById("crop-image").files[0];
+
+            const formData = new FormData();
+            formData.append('crop-name', cropName);
+            formData.append('crop-price', cropPrice);
+            formData.append('crop-quantity', cropQuantity);
+            formData.append('crop-image', cropImage);
+
+            fetch('/add-crop', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Crop added successfully:', data);
+                addCropToTable(data);
+                clearFormInputs();
+            })
+            .catch(error => {
+                console.error('Error adding crop:', error);
+            });
+        }
+
+        function addCropToTable(cropData) {
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td><img src="/static/uploads/${cropData.image_filename}" alt="Crop Image" width="150"></td>
+                <td>${cropData.name}</td>
+                <td>${cropData.quantity} <span id="metric"></span></td>
+                <td>RS ${cropData.price}</td>
+                <td><i class="fas fa-trash" onclick="deleteRow(this)"></i></td>
+            `;
+            document.getElementById("tbl").getElementsByTagName('tbody')[0].appendChild(newRow);
+        }
+
+        function clearFormInputs() {
+            document.getElementById("crop-name").value = "";
+            document.getElementById("crop-price").value = "";
+            document.getElementById("crop-quantity").value = "";
+            document.getElementById("crop-image").value = "";
+        }
+
+        function deleteRow(btn) {
+            var row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        // Translate to the initially selected language
+        translateToLanguage(languageSelect.value);
+    </script>
+</body>
+
+</html>

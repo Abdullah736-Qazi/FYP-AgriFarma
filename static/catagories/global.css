@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-comfortaa: Comfortaa;
+
+  /* font sizes */
+  --font-size-13xl: 32px;
+
+  /* Colors */
+  --main-green: #1d3133;
+  --color-darkslategray-100: rgba(36, 69, 66, 0.94);
+  --color-tan: #dbbf9d;
+}

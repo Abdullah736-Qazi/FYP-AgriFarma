@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='verification/verification.css') }}">
+</head>
+
+<body>
+<div class="header">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='verification/public/agrifarmer-1-2@2x.png') }}" alt="logo">
+    </div>
+</div>
+
+<div class="main">
+    <div class="container">
+    <div class="divider"><hr></div>
+    <div class="heading">Verification</div>
+   <div class="hero">
+    <div class="phone-number">
+       <div class="myphone">
+        <label for="phone">Phone Number</label><br>
+        <input type="number" class="phone-input" id="phoneInput" placeholder="ENTER YOUR NUMBER">
+        <div class="btns">
+            <button id="generateBtn" onclick="sendOTP()">Generate OTP</button>
+        </div>
+        <div class="verifyme" style="display: none;">
+            <label for="otp">Enter OTP</label><br>
+            <input type="number" class="otp-input" id="otpInput" placeholder="ENTER YOUR OTP">
+            <div class="btns">
+                <button id="verifyBtn" onclick="verifyOTP()">Verify</button>
+            </div>
+        </div>
+       </div>
+    </div>
+    <div class="veriimg">
+        <img src="{{ url_for('static', filename='verification/public/fingerprint-verification@2x.png') }}" alt="" class="img-finger">
+    </div>
+   </div>
+</div>
+</div>
+
+<script>
+    function sendOTP() {
+        var phoneInput = document.getElementById("phoneInput").value;
+        if (phoneInput) {
+            // Send AJAX request to Flask route to send OTP
+            fetch('/verification_forgetpass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'send_otp',
+                    phone_number: phoneInput,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('OTP sent successfully!');
+                    document.querySelector('.verifyme').style.display = 'block';
+                } else {
+                    alert('Failed to send OTP. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send OTP. Please try again.');
+            });
+        } else {
+            alert('Please enter a phone number.');
+        }
+    }
+
+    function verifyOTP() {
+        var otpInput = document.getElementById("otpInput").value;
+        if (otpInput) {
+            // Send AJAX request to Flask route to verify OTP
+            fetch('/verification_forgetpass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'verify_otp',
+                    otp: otpInput,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('OTP verified successfully!');
+                     window.location.href = "{{ url_for('dashboard') }}";
+                } else {
+                    alert('Invalid OTP. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to verify OTP. Please try again.');
+            });
+        } else {
+            alert('Please enter OTP.');
+        }
+    }
+</script>
+
+</body>
+</html>

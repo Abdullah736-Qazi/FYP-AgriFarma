@@ -1,0 +1,231 @@
+/* General Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  
+  body {
+    background-color: #1D3133;
+    width: 100%;
+    font-family: sans-serif; /* Ensure consistent font rendering */
+  }
+  
+  /* Go Back Button */
+  .go-back {
+    margin-top: 20px;
+    font-size: 24px;
+    
+  }
+  a{
+    color: white;
+    background-color: #28494D;
+    padding: 10px 20px;
+    border-radius: 20px;
+  }
+  
+  
+  .go-back i {
+    margin-right: 5px;
+    font-size: 24px;
+  }
+  
+  /* Heading */
+  .heading {
+    text-align: center; /* Center the heading */
+    color: #DBBF9D;
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  /* Location Container */
+  .location-container {
+    text-align: center; /* Center the location container */
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .select-city {
+    width: 30%; /* Adjust width for smaller screens */
+    height: 30px;
+    background-color: #DBBF9D;
+    color: black;
+  }
+  
+  /* Form Container */
+  .main-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center;
+  }
+  
+  .form-container {
+    width: 80%; /* Adjust width for smaller screens */
+    min-height: 400px;
+    background-color: #28494D;
+    border-radius: 30px;
+    margin-bottom: 20px; /* Add some spacing */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #DBBF9D;
+    padding: 10px 0px;
+  }
+  
+  input {
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    padding-left: 20px;
+  }
+ select{
+  height: 30px;
+  border-radius: 15px;
+ }
+ .header {
+  background-color: #1d3133;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  height: 200px;
+}
+
+.logo {
+  flex: 1; /* Take up available space */
+}
+
+.logo img {
+  max-height: 70%; /* Make sure the image doesn't exceed the height of the parent div */
+}
+
+.language {
+  flex: 1; /* Take up available space */
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: flex-end; /* Align items to the end of the container */
+}
+
+#language {
+  margin-left: 10px; 
+  margin-right: 40px;
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  border: transparent;/* Add some space between the logo and the select box */
+}
+
+  
+  .addcrop {
+    padding: 20px 50px;
+    margin-top: 20px;
+    margin-left: 30px;
+    color: black;
+    background-color: #DBBF9D;
+    border: none;
+    border-radius: 30px;
+  }
+  
+  .addcrop:hover {
+    background-color: black;
+    color: #DBBF9D;
+  }
+  
+  /* Table Container */
+  .table-container {
+    width: 70%; 
+    margin: 50px auto; 
+    display: flex;
+    flex-direction: column; /* Align children in a column */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+}
+  
+  #delete-icon {
+    font-size: 1.5em;
+    color: #DBBF9D;
+    cursor: pointer;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 80%;
+    border-radius: 80px;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 15px; /* Adjust padding for smaller screens */
+    border: 1px solid #ddd;
+    font-size: 18px; /* Adjust font size for smaller screens */
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  /* tr:nth-child(even) {
+    background-color: #f2f2f2;
+    color: black;
+    border-color: black;
+  } */
+  
+  th {
+    background-color: white;
+    color: black;
+  }
+
+
+
+
+  /* responsive */
+
+  @media (max-width: 850px){
+    .heading {
+        text-align: center; /* Center the heading */
+        color: #DBBF9D;
+        margin-top: 50px;
+       padding-right: 200px;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .form-container {
+        width: 60%; /* Adjust width for smaller screens */
+        min-height: 400px;
+        background-color: #28494D;
+        border-radius: 30px;
+        margin-bottom: 20px; /* Add some spacing */
+        display: flex;
+        justify-content: center;
+        margin-right: 200px;
+      }
+      .select-city {
+        width: 30%; /* Adjust width for smaller screens */
+        height: 30px;
+        background-color: #DBBF9D;
+        color: black;
+        margin-right: 200px;
+      }
+      .table-container {
+        width: 100%; 
+        margin: 50px auto; 
+        display: flex;
+        flex-direction: column; /* Align children in a column */
+        justify-content: center; /* Center the content horizontally */
+        align-items: center; /* Center the content vertically */
+        s
+    }
+  }

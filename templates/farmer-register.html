@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='register-farmer/register.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='register-farmer/global.css') }}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" />
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='register-farmer/public/agrifarmer-1-1@2x.png') }}" alt="">
+    </div>
+    <div class="language">
+      <label for="language">Language:</label>
+      <select name="language" id="language">
+        <option value="English">English</option>
+        <option value="Urdu">Urdu</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- form-->
+
+  <div class="main-container">
+    <div class="heading">Sign-up</div>
+    <div class="breakline"><hr></div>
+    <div class="hero">
+      <div class="form">
+        <form id="registrationForm" action="{{ url_for('farmer_register') }}" method="POST">
+          <label for="Name">Name</label>
+          <input type="text" name="name">
+          <label for="Phone">Phone Number</label>
+          <div class="phone-label">
+            <input type="tel" name="phone_number" >
+          </div>
+          <label for="Password">Password</label>
+          <div class="password-container">
+            <input type="password" name="password" id="passwordInput" >
+            <i class="icon1" id="passwordToggle">
+              <img src="{{ url_for('static', filename='register-farmer/public/💙 Icons by Remix Icon v2.5.0.png') }}" alt="">
+            </i>
+          </div>
+          <button type="submit" class="submit">Submit</button>
+          <a href="{{ url_for('farmer_login') }}" class="account" id="loginButton">I have an account</a>
+        </form>
+      </div>
+      <div class="heri-img">
+        <img src="{{ url_for('static', filename='register-farmer/public/farmer-with-a-carrot@2x.png') }}" alt="">
+      </div>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for message in messages %}
+          <div class="{{ message[1] }}">{{ message[0] }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var passwordInput = document.getElementById('passwordInput');
+      var passwordToggle = document.getElementById('passwordToggle');
+  
+      passwordToggle.addEventListener('click', function () {
+        passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+      });
+  
+      var registrationForm = document.getElementById('registrationForm');
+  
+      registrationForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+  
+        // Check if all fields are filled
+        var formFields = registrationForm.querySelectorAll('input, select');
+        var allFieldsFilled = true;
+        formFields.forEach(function (field) {
+          if (!field.value.trim()) {
+            alert('Please fill in all fields.'); // Show error message
+            allFieldsFilled = false;
+            return;
+          }
+        });
+  
+        if (!allFieldsFilled) {
+          return;
+        }
+  
+        // Check phone number format
+        var phoneNumber = registrationForm.querySelector('input[name="phone_number"]').value.trim();
+        if (!/^03\d{9}$/.test(phoneNumber)) {
+          alert('Please enter a valid phone number starting with "03" and exactly 11 digits long.'); // Show error message
+          return;
+        }
+  
+        // Get form data
+        var formData = new FormData(registrationForm);
+  
+        // Submit the form data via AJAX
+        fetch('{{ url_for("farmer_register") }}', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (!data.success) {
+            alert(data.error); // Show error message
+            window.location.href = '{{ url_for("farmer_register") }}'; // Redirect to registration page
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('profile updated successfully!.');
+          window.location.href = '{{ url_for("farmer_register") }}';
+        });
+      });
+  
+      var languageSelect = document.getElementById('language');
+      languageSelect.addEventListener('change', function () {
+        var language = this.value;
+        translateToLanguage(language);
+      });
+  
+      function translateToLanguage(language) {
+        var translations = {
+          'Urdu': {
+            'Name': 'نام',
+            'Phone Number': 'فون نمبر',
+            'Password': 'پاسورڈ',
+            'Submit': 'جمع کروائیں',
+            'I have an account': 'میرے پاس اکاؤنٹ ہے',
+            'Sign-up': 'سائن اپ',
+            'Language': 'زبان'
+          },
+          'English': {
+            'Name': 'Name',
+            'Phone Number': 'Phone Number',
+            'Password': 'Password',
+            'Submit': 'Submit',
+            'I have an account': 'I have an account',
+            'Sign-up': 'Sign-up',
+            'Language': 'Language'
+          }
+        };
+  
+        var formLabels = document.querySelectorAll('.form label');
+        var submitButton = document.querySelector('.submit');
+        var loginLink = document.querySelector('.account');
+        var heading = document.querySelector('.heading');
+  
+        formLabels.forEach(function(label) {
+          var labelText = label.textContent.trim();
+          label.textContent = translations[language][labelText];
+        });
+  
+        submitButton.textContent = translations[language]['Submit'];
+        loginLink.textContent = translations[language]['I have an account'];
+        heading.textContent = translations[language]['Sign-up'];
+        languageSelect.querySelector('option[value="English"]').textContent = translations[language]['Language'];
+      }
+    });
+  </script>  
+</body>
+
+</html>

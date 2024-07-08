@@ -1,0 +1,184 @@
+.header {
+  background-color: #1d3133;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  height: 200px;
+}
+
+.logo {
+  flex: 1; /* Take up available space */
+}
+
+.logo img {
+  max-height: 70%; /* Make sure the image doesn't exceed the height of the parent div */
+}
+
+.language {
+  flex: 1; /* Take up available space */
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: flex-end; /* Align items to the end of the container */
+}
+
+#language {
+  margin-left: 10px; 
+  margin-right: 40px;
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  border: transparent;/* Add some space between the logo and the select box */
+}
+
+
+/* lanfguage */
+
+
+
+.agri-farmer-1-1 {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+}
+.are-you-a {
+  position: absolute;
+  bottom: 816px;
+  left: calc(50% - 190px);
+  font-size: 24px;
+}
+.farmer-login-child {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 90px);
+  border-radius: 50%;
+  background-color: var(--color-darkslategray-100);
+  width: 180px;
+  height: 180px;
+}
+.farmer-icon,
+.farmer-login {
+  position: absolute;
+  cursor: pointer;
+}
+.farmer-icon {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  bottom: 28.29px;
+  left: calc(50% - 57.86px);
+  width: 124.71px;
+  height: 124.71px;
+  background-image: url(./public/farmericon@2x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.farmer-login {
+  bottom: 612px;
+  left: calc(50% - 100px);
+  width: 180px;
+  height: 180px;
+}
+.farmer {
+  position: absolute;
+  bottom: 565px;
+  left: calc(50% - 71px);
+}
+.customer-icon,
+.or {
+  position: absolute;
+  bottom: 512px;
+  left: calc(50% - 29px);
+}
+.customer-icon {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  bottom: 28.29px;
+  left: calc(50% - 61.71px);
+  width: 124.71px;
+  height: 124.71px;
+  background-image: url(./public/customericon@2x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.consumer,
+.customer-login {
+  position: absolute;
+  left: calc(50% - 101px);
+}
+.customer-login {
+  bottom: 318px;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+}
+.consumer {
+  bottom: 270px;
+}
+.s1-child {
+  position: absolute;
+  top: 919px;
+  left: 0;
+  background-color: #d9d9d9;
+  width: 1440px;
+  height: 105px;
+}
+.all-rights-reserved {
+  position: absolute;
+  top: 951px;
+  left: 532px;
+  font-size: 36px;
+  font-weight: 500;
+  color: #000;
+  text-align: left;
+}
+.copyright-all-rights-reserved {
+  position: absolute;
+  top: 955px;
+  left: 879px;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+.s1 {
+  position: relative;
+  background-color: var(--main-green);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-13xl);
+  color: var(--color-tan);
+  font-family: var(--font-comfortaa);
+}
+
+
+
+@media (max-width: 960px) {
+  .all-rights-reserved {
+    position: absolute;
+    top: 970px;
+    left: 270px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    text-align: left;
+  }
+  .copyright-all-rights-reserved {
+    position: absolute;
+    top: 970px;
+    left: 450px;
+    width: 15px;
+    height: 18px;
+    object-fit: cover;
+  }
+}

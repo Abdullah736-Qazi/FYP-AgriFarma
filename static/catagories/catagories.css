@@ -1,0 +1,146 @@
+/* header */
+
+.mini-nav{
+    height: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EFEAE3;
+   
+}
+.lang-con{
+display: flex;
+padding: 0 25px;
+align-items: center;
+gap: 5px;
+}
+.lang-con h5{
+    font-size: 18px;
+}
+.social-icons{
+    display: flex;
+    align-items: center;
+   gap: 15px;
+   padding: 0 20px;
+}
+.social-icons i{
+    font-size: 20px;
+}
+
+.lang-con select {
+    height: 25px; /* Adjust the height as needed */
+    width: 150px; /* Adjust the width as needed */
+    border-radius: 10px;
+    border: 1px solid #1D3133;
+    
+}
+
+.main-nav {
+    height: 120px;
+    width: 100%;
+    background-color: #EFEAE3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* filter: drop-shadow(0 10px 20px black); */
+    
+}
+
+.main-nav img {
+    height: 150px;
+}
+
+/* animation main */
+.menu-items a {
+    position: relative;
+    text-decoration: none;
+    color: #333; /* Change the color as needed */
+    display: inline-block;
+    margin-right: 20px;
+    padding-bottom: 5px; /* Space for the line */
+    font-size: 2vw;
+}
+
+.menu-items a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px; /* Height of the line */
+    background-color: #1D3133; /* Color of the line */
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0); /* Initial state: line is not visible */
+    transform-origin: bottom left;
+    transition: transform 0.6s ease; /* Transition for the line effect */
+}
+
+.menu-items a:hover::before {
+    transform: scaleX(1); /* When hovered, expand the line */
+}
+
+.menu-items a i {
+    margin-right: 5px; /* Add some spacing between the icon and text */
+}
+
+/* logout btn */
+.logout{
+    padding: 0 20px;
+}
+.logout a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5vw;
+    overflow: hidden;
+    perspective: 1000px;
+    transition: color 0.3s ease-in-out;
+    padding: 10px 15px;
+    border: 1px solid #1D3133;
+    border-radius: 25px;
+}
+
+.logout a i {
+    margin-left: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logout a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff7f50, #ff3e96);
+    top: -50%;
+    left: -50%;
+    transform: rotate(45deg) scale(0);
+    opacity: 0;
+    z-index: -1;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out;
+}
+
+.logout:hover a {
+    color: #1D3133; /* Change the color on hover to an attractive color */
+}
+
+.logout:hover a i {
+    transform: translateX(10px); /* Move the icon to the right on hover */
+}
+
+.logout:hover a::before {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.7;
+}
+
+/* header ends */
+.page1{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+

@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  --font-comfortaa: 'Comfortaa', sans-serif;
+  --font-size-5xl: 24px;
+  --main-green: #1d3133;
+  --light-light-1: #fff;
+  --br-6xl: 25px;
+}

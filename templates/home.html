@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-page/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-page/home.css') }}">
+</head>
+<body>
+    <!-- menu bar -->
+    <div class="menubar">
+        <div class="logoimg">
+            <img src="{{ url_for('static', filename='home-page/public/Agri-Farmer (1).png') }}" alt="Logo">
+        </div>
+        <div class="menu-items">
+            <ul class="items">
+                <a href="#"> <li>Home</li></a>
+                <label class="lan" for="language">Language:</label>
+                <select name="language" id="language">
+                  <option value="English">English</option>
+                  <option value="Urdu">Urdu</option>
+                </select>
+            </ul>
+        </div>
+        <div class="logoutbtn">
+          <a href="{{ url_for('landing') }}" class="lgtbtn">
+              <img src="{{ url_for('static', filename='home-page/public/Logout.png') }}" alt="Logout Icon" class="logouticon"> Get Started
+          </a>
+       </div>
+    </div>
+    <!-- menu bar ends -->
+
+    <!-- hero section starts -->
+    <div class="hero-section">
+        <div class="splitsection">
+            <div class="hero-heading">
+                <h3>Our AI recommendations will help you to connect directly to consumers and our recommendations will help farmer to increase productivity & precise decsion making.</h3>
+                <div class="marketbtn">
+                    <!-- <button type="button" class="lgtbtn">
+                        <img src="{{ url_for('static', filename='home-page/public/Online Store.png') }}" alt="Logout Icon" class="logouticon"> Market
+                    </button> -->
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="{{ url_for('static', filename='home-page/public/Halloween pumpkin market.png') }}" alt="">
+            </div>
+        </div>
+        
+        <div class="hero-button"> 
+          <a href="{{ url_for('farmer_login') }}" class="lgtbtn">
+              <img src="{{ url_for('static', filename='home-page/public/Arrow.png') }}" alt="Logout Icon" class="logouticon"> Farmer Login
+          </a>
+
+          <a href="{{ url_for('customer_login') }}" class="lgtbtn">
+            <img src="{{ url_for('static', filename='home-page/public/Arrow.png') }}" alt="Logout Icon" class="logouticon"> Customer Login
+        </a>
+        </div>
+    </div>
+    <!-- hero section ends -->
+
+    <!-- video section -->
+    <!-- <div class="video-section">
+        <video src="{{ url_for('static', filename='home-page/public/love-song-15s-status-video.mp4') }}" autoplay muted loop></video>
+    </div> -->
+    <!-- video ends -->
+
+    <!-- services section -->
+    <div class="services-section">
+        <div class="heading1">
+            <h1>Our Services</h1>
+        </div>
+        <div class="services-mainbox">
+            <div class="servicesbox">
+                <div class="icon">
+                    <img src="{{ url_for('static', filename='home-page/public/Communication.png') }}" alt="">
+                </div>
+                <div class="services-heading"><h3>Direct Communication</h3></div>
+                <div class="services-para">
+                    <p>Connect farmers and buyers directly through a secure messaging system, enabling seamless communication and negotiation.</p>
+                </div>
+            </div>
+            
+            <div class="servicesbox">
+                <div class="icon">
+                    <img src="{{ url_for('static', filename='home-page/public/Bot.png') }}" alt="">
+                </div>
+                <div class="services-heading"><h3>Top Recommendation</h3></div>
+                <div class="services-para">
+                    <p>Connect farmers and buyers directly through a secure messaging system, enabling seamless communication and negotiation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-heading">
+                <h4>All rights reserved</h4> 
+                <img src="{{ url_for('static', filename='home-page/public/Copyright All Rights Reserved.png') }}" alt="">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

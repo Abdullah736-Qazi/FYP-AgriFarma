@@ -1,0 +1,526 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+.loader{
+    position: fixed;
+    z-index: 999;
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px 0;
+}
+
+/* headings */
+.loader h1{
+    font-size: 3vw;
+    color: white;
+}
+
+
+
+.my-heading h1 {
+    font-size: 6vw;
+    line-height: 5vw;
+    -webkit-text-stroke: 1px white; /* Adjust the stroke width as needed */
+    color: transparent;
+}
+
+
+
+.heading1{
+    position: relative;
+    z-index: 0;
+}
+.heading2{
+    position: relative;
+    z-index: 3;
+}
+.heading3{
+    position: relative;
+    z-index: 3;
+}
+
+.page1{
+    max-height: 180vh;
+    width: 100%;
+    background-color:#1D3133;
+    position: relative;
+}
+.mini-nav{
+    height: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EFEAE3;
+    /* filter: drop-shadow(0 10px 40px black); */
+}
+.lang-con{
+display: flex;
+padding: 0 25px;
+align-items: center;
+gap: 5px;
+}
+.lang-con h5{
+    font-size: 18px;
+}
+.social-icons{
+    display: flex;
+    align-items: center;
+   gap: 15px;
+   padding: 0 20px;
+}
+.social-icons i{
+    font-size: 20px;
+}
+
+.lang-con select {
+    height: 25px; /* Adjust the height as needed */
+    width: 150px; /* Adjust the width as needed */
+    border-radius: 10px;
+    border: 1px solid #1D3133;
+    
+}
+
+.main-nav {
+    height: 120px;
+    width: 100%;
+    background-color: #EFEAE3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* filter: drop-shadow(0 10px 20px black); */
+    
+}
+
+.main-nav img {
+    height: 150px;
+}
+
+/* animation main */
+.menu-items a {
+    position: relative;
+    text-decoration: none;
+    color: #333; /* Change the color as needed */
+    display: inline-block;
+    margin-right: 20px;
+    padding-bottom: 5px; /* Space for the line */
+    font-size: 2vw;
+}
+
+.menu-items a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px; /* Height of the line */
+    background-color: #1D3133; /* Color of the line */
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0); /* Initial state: line is not visible */
+    transform-origin: bottom left;
+    transition: transform 0.6s ease; /* Transition for the line effect */
+}
+
+.menu-items a:hover::before {
+    transform: scaleX(1); /* When hovered, expand the line */
+}
+
+.menu-items a i {
+    margin-right: 5px; /* Add some spacing between the icon and text */
+}
+
+/* logout btn */
+.logout{
+    padding: 0 20px;
+}
+.logout a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5vw;
+    overflow: hidden;
+    perspective: 1000px;
+    transition: color 0.3s ease-in-out;
+    padding: 10px 15px;
+    border: 1px solid #1D3133;
+    border-radius: 25px;
+}
+
+.logout a i {
+    margin-left: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logout a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff7f50, #ff3e96);
+    top: -50%;
+    left: -50%;
+    transform: rotate(45deg) scale(0);
+    opacity: 0;
+    z-index: -1;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out;
+}
+
+.logout:hover a {
+    color: #1D3133; /* Change the color on hover to an attractive color */
+}
+
+.logout:hover a i {
+    transform: translateX(10px); /* Move the icon to the right on hover */
+}
+
+.logout:hover a::before {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.7;
+}
+
+
+/* hero sections */
+.hero-section {
+    /* background-color: orange; */
+    max-height: 22vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 1vw 20px;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.hero-section h3{
+    font-size: 2vw;
+    color: white;
+    position: relative;
+    
+}
+
+
+/* Add the styles for the search bar and icon */
+.search-container {
+    margin-left: 20px; /* Adjust the margin as needed to create space between city and search containers */
+    padding: 5px 0;
+}
+
+.search-container h5 {
+    font-size: 18px; /* Adjust the font size as needed */
+    margin-bottom: 5px; /* Add some space below the heading */
+    color: beige;
+    margin-left: 10px;
+}
+
+.search-con {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-con input {
+    padding: 15px 55px; /* Adjust padding as needed */
+    border: 1px solid #1D3133;
+    border-radius: 25px;
+    outline: none;
+    width: 100%; /* Set the width to 50% or an absolute value like 300px */
+    font-size: 16px; /* Adjust font size as needed */
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; /* Adjust the right position as needed */
+    color: #46d4e0;
+}
+
+.search-icon i {
+    font-size: 30px; /* Set the icon size to 30px or your preferred size */
+}
+
+
+
+/* crops containers */
+
+.elem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-height: 40vw;
+    padding: 2vw 0;
+    background-size: cover;
+    background-position: center;
+    background-image: url(public/36101.jpg);
+}
+
+.elem {
+    height: 100px;
+    width: 40%;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 20px;
+    /* border: 1px solid #1D3133; */
+    background-color: #00000000;
+    position: relative;
+    background: rgba(110, 110, 110, 0.05); /* Adjust the alpha value for the desired transparency */
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+   
+}
+
+.elem::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1); /* Adjust the alpha value for the desired transparency */
+    backdrop-filter: blur(10px); /* Adjust the blur value for the desired effect */
+    border-radius: 10px; /* Adjust the border-radius for the desired corner radius */
+    z-index: -1;
+}
+
+.elem h2 {
+    font-size: 1.8vw;
+    position: relative;
+    z-index: 99;
+    color: white;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #1D3133;
+    left: 0;
+    top: -100%; /* Set the initial position to 0 to hide the overlay */
+    transition: all ease-in 0.4s;
+   
+}
+
+.elem:hover{
+    border: none;
+}
+
+.elem:hover .overlay {
+    top: 0; /* Move the overlay up on hover */
+    border: 1px solid black;
+    border-radius: 40px;
+    
+}
+.elem:hover {
+    
+    border-radius: 40px;
+    
+}
+.elem-container a{
+    text-decoration: none;
+}
+
+
+
+/* fixed container */
+.fixed{
+    height: 30vh;
+    width: 20vw;
+    /* background-color: #ff3e96; */
+    position: fixed;
+    z-index: 99;
+    border-radius: 40px;
+    left: 50%;
+    top: 40%;
+    display: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    /* footer */
+    .footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 25vh;
+        width: 100%;
+        background-color: #1D3133;
+       
+        padding-top: 2.5vw;
+       
+    }
+    footer {
+       
+       
+        color: #fff;
+        padding: 20px 0;
+       
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+    .social-icons-footer i {
+        font-size: 24px;
+        margin: 0 10px;
+        color: #fff;
+    }
+
+
+
+
+
+
+    /* heading */
+    .main {
+        position: relative;
+        height: 60vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        /* background-color: yellow; */
+    }
+    
+    .gola {
+        background-color: orangered;
+        height: 20vw;
+        width: 20vw;
+        border-radius: 50%;
+        position: absolute;
+        top: 0%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        filter: blur(20px);
+       animation-name: gola;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    
+
+    
+    @keyframes gola {
+        from {
+            transform: translate(10%, -5%);
+        }
+        to {
+            transform: translate(-20%, 40%);
+        }
+    }
+
+
+    /* heading portion khtm */
+
+
+    /* mobile view */
+
+
+
+    /* Hamburger menu button */
+/* Hamburger menu button */
+.mobile-menu-btn {
+    display: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.bar {
+    width: 30px;
+    height: 3px;
+    background-color: orangered;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Mobile menu styles */
+@media (max-width: 767px) {
+    .mobile-menu-btn {
+        display: block;
+        position: fixed;
+        top: 0px;
+        left: 50%;
+    }
+
+    .main-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        z-index: 999;
+        padding-top: 70px; /* Adjusted padding to prevent overlap with the button */
+    }
+
+    .main-nav.show {
+        display: block;
+    }
+
+    .main-nav a {
+        display: block;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        border-bottom: 1px solid #ddd;
+        transition: background-color 0.3s;
+    }
+
+    .main-nav a:last-child {
+        border-bottom: none;
+    }
+
+    .main-nav a:hover {
+        background-color: orange; /* Highlight on hover */
+    }
+
+    .gola {
+        background-color: orangered;
+        height: 15vw;
+        width: 15vw;
+        border-radius: 50%;
+        position: absolute;
+        top: 20%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        filter: blur(20px);
+       animation-name: gola;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+}
+
+/* Optional: Add transition for smoother animation */
+.main-nav {
+    transition: transform 0.3s ease;
+}

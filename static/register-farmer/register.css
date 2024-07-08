@@ -1,0 +1,155 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1d3133;
+}
+
+.header {
+  background-color: #1d3133;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  height: 200px;
+}
+
+.logo {
+  flex: 1; /* Take up available space */
+}
+
+.logo img {
+  max-height: 70%; /* Make sure the image doesn't exceed the height of the parent div */
+}
+
+.language {
+  flex: 1; /* Take up available space */
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: flex-end; /* Align items to the end of the container */
+}
+
+#language {
+  margin-left: 10px; 
+  margin-right: 40px;
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  border: transparent;/* Add some space between the logo and the select box */
+}
+
+
+/* container */
+
+button{
+  color: white;
+}
+.main-container{
+  width: 80%;
+  background-color: #28494D;
+  border-radius: 60px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+hr{
+  color: white;
+  height: 8px;
+  width: 150px;
+  background-color: #DBBF9D;
+}
+.heading{
+  color: white;
+  font-size: 35px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin: 20px 0px;
+}
+.hero{
+  width: 90%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form{
+  display: flex;
+  width: 60%;
+ 
+}
+form{
+  display: flex;
+flex-direction: column;
+width: 100%;
+justify-content: center;
+margin: 20px 50px;
+
+
+}
+
+form input{
+  width: 250px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  margin: 10px 0px;
+  padding-right: 40px;
+  padding-left: 10px;
+  font-size: 18px;
+  
+}
+
+
+.icon1 img{
+  height: 20px;
+  color: #DBBF9D;
+  margin: 5px 0px 0px 0px;
+
+}
+
+form label{
+  color: white;
+  font-size: 25px;
+}
+.verify{
+  width: 20%;
+  height: 30px;
+  border-radius: 12px;
+  border: none;
+  background-color: #1d3133;
+}
+
+.submit,.account{
+  width: 30%;
+  margin: 10px 0px;
+  background-color: #1d3133;
+  border: none;
+  border-radius: 20px;
+  height: 35px;
+  margin-top: 20px;
+}
+a{
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 10px;
+}
+#loginButton{
+
+}
+
+/* hero img */
+.heri-img{
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heri-img img{
+  width: 70%;
+}

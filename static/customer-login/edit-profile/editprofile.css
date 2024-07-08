@@ -1,0 +1,155 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #1d3133;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    height: 200px;
+  }
+  
+  .logo {
+    flex: 1; /* Take up available space */
+  }
+  
+  .logo img {
+    max-height: 70%; /* Make sure the image doesn't exceed the height of the parent div */
+  }
+  
+  .language {
+    flex: 1; /* Take up available space */
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: flex-end; /* Align items to the end of the container */
+  }
+  
+  #language {
+    margin-left: 10px; 
+    margin-right: 40px;
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    border: transparent;/* Add some space between the logo and the select box */
+  }
+  
+
+.goback {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #28494D;
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+.container {
+    background-color: #28494D;
+    width: 50%;
+    margin: 100px auto;
+    border-radius: 10px;
+    padding: 20px;
+}
+.heading{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+
+
+#upload {
+    display: none;
+}
+
+#profileText {
+    margin-top: 180px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    color: #fff;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    width: 70%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-container button:first-child,.verify-btn {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.button-container button:last-child {
+    background-color: #f44336;
+    color: #fff;
+    margin-right: 40px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.phone input{
+    width: 70%;
+}
+.verify-btn{
+    margin-left: 40px;
+}
+
+
+
+
+/* responsive */
+
+@media screen and (max-width: 800px) {
+    .container {
+        background-color: #28494D;
+        width: 100%;
+        margin: 150px auto;
+        border-radius: 10px;
+        padding: 20px;
+        height: 500px;
+        
+    }
+    .button-container button:last-child {
+        background-color: #f44336;
+        color: #fff;
+        margin-right: 60px;
+    }
+  }

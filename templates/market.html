@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='market/market.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        .ri-english-input {
+            font-size: 1rem;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="loader">
+    <h1>Get Started</h1>
+    <img src="{{ url_for('static', filename='market/public/agrifarmer-1-1@2x.png') }}" alt="" srcset="">
+</div>
+<div class="mobile-menu-btn">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+
+<div class="fixed"></div>
+
+<div id="main">
+    <div class="page1">
+        <div class="mini-nav">
+            <div class="lang-con">
+                <h5>Language</h5>
+                <select name="lang" id="">
+                    <option value="language">Urdu</option>
+                    <option value="language">English <i class="ri-english-input"></i></option>
+                </select>
+            </div>
+            <div class="social-icons">
+                <i class="ri-facebook-line"></i>
+                <i class="ri-twitter-x-line"></i>
+                <i class="ri-youtube-line"></i>
+            </div>
+        </div>
+        <div class="main-nav">
+            <img src="{{ url_for('static', filename='market/public/agrifarmer-1-1@2x.png') }}" alt="" srcset="">
+            <div class="menu-items">
+                <a href="#"><i class="ri-home-2-line"></i>Home</a><a href="/market"><i class="ri-store-2-line"></i> Market</a>
+            </div>
+            <div class="logout">
+                <a href="#">Logout <i class="ri-logout-box-r-line"></i></a>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="my-heading">
+                <h1 class="heading1">Turning</h1>
+                <div class="gola"></div>
+                <h1 class="heading2">IDEAS INTO</h1>
+                <h1 class="heading3">REALITY</h1>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="search-container">
+                <h5>Search</h5>
+                <div class="search-con">
+                    <input type="text" id="searchInput" placeholder="Enter your search">
+                    <i class="ri-search-line search-icon"></i>
+                </div>
+            </div>
+            <h3>Browse Categories</h3>
+        </div>
+
+        <div class="elem-container">
+            <!-- Rice -->
+            <a href="#" class="elem" data-category="Rice" data-image="{{ url_for('static', filename='market/public/rice.webp') }}" onclick="redirectToCategory('Rice')">
+                <div class="overlay"></div>
+                <h2>Rice</h2>
+            </a>              
+            <!-- Wheat -->
+            <a href="#" class="elem" data-category="Wheat" data-image="https://images.unsplash.com/photo-1616514356967-84b821175c8d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hlYXQlMjBjcm9wfGVufDB8fDB8fHww" onclick="redirectToCategory('Wheat')">
+                <div class="overlay"></div>
+                <h2>Wheat</h2>
+            </a>
+            <!-- Sugarcane -->
+            <a href="#" class="elem" data-category="Sugarcane" data-image="https://media.istockphoto.com/id/182159812/photo/detail-of-sugar-cane.webp?b=1&s=170667a&w=0&k=20&c=XSQiAcDOa6FK4_BshMGYG4rMCU_QuP4oE4mwRB8FBv0=" onclick="redirectToCategory('Sugarcane')">
+                <div class="overlay"></div>
+                <h2>Sugarcane</h2>
+            </a>
+            <!-- Cotton -->
+            <a href="#" class="elem" data-category="Cotton" data-image="https://images.unsplash.com/photo-1502395809857-fd80069897d0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y290dG9uJTIwY3JvcHxlbnwwfHwwfHx8MA%3D%3D" onclick="redirectToCategory('Cotton')">
+                <div class="overlay"></div>
+                <h2>Cotton</h2>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <footer>
+        <div class="social-icons-footer">
+            <i class="ri-facebook-line"></i>
+            <i class="ri-twitter-x-line"></i>
+            <i class="ri-youtube-line"></i>
+        </div>
+        <p>&copy; 2024 Agri-Farmer. All Rights Reserved.</p>
+    </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ url_for('static', filename='market/public/market.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+function redirectToCategory(category) {
+    console.log("Redirecting to category:", category);
+    window.location.href = `/categories?category=${category}`; // Redirect to categories page with selected category
+}
+
+</script>
+
+</body>
+</html>

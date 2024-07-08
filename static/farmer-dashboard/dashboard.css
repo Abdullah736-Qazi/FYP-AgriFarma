@@ -1,0 +1,224 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #1D3133;
+    width: 100%;
+    height: auto;
+}
+
+h4{
+    color: white;
+
+}
+
+.header {
+    background-color: #1d3133;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    height: 200px;
+  }
+  
+  .logo {
+    flex: 1; /* Take up available space */
+  }
+  
+  .logo img {
+    max-height: 70%; /* Make sure the image doesn't exceed the height of the parent div */
+  }
+  
+  .language {
+    flex: 1; /* Take up available space */
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: flex-end; /* Align items to the end of the container */
+  }
+  
+  #language {
+    margin-left: 10px; 
+    margin-right: 40px;
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    border: transparent;/* Add some space between the logo and the select box */
+  }
+  
+
+/* green container */
+.menu-container{
+    background-color: #28494D;
+    width: 50%;
+    border-radius: 50px;
+    margin: 80px 350px;
+    min-height: 400px;
+   
+}
+.profile-logout{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 60px;
+}
+.profile{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profileimg{
+    width: 50%;
+    
+}
+.profile h4{
+    font-size: 20px;
+    color: white;
+    font-size: bold;
+   margin-left: -90px;
+}
+.logout{
+    width: 60%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-top: 25px;
+    
+}
+.logoutbtn{
+    padding: 30px 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: #1D3133;
+    color: white;
+    
+}
+
+.main-menus{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 45px;
+}
+
+.crops,.my-crops,.top{
+    height: 3.3rem;
+    width: auto;
+}
+.top {
+    padding-left: 40px;
+}
+
+.addcrops,.mycrops h4{
+text-align: center;
+}
+.toprecommendations h4{
+    text-align: justify;
+}
+.crops img{
+    width: 60%;
+}
+
+
+.table-container {
+    width: 70%; 
+    margin: 50px auto; 
+    display: flex;
+    flex-direction: column; /* Align children in a column */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+}
+  
+  #delete-icon {
+    font-size: 1.5em;
+    color: #DBBF9D;
+    cursor: pointer;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 80%;
+    border-radius: 80px;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 15px; /* Adjust padding for smaller screens */
+    border: 1px solid #ddd;
+    font-size: 18px; /* Adjust font size for smaller screens */
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  /* tr:nth-child(even) {
+    background-color: #f2f2f2;
+    color: black;
+    border-color: black;
+  } */
+  
+  th {
+    background-color: white;
+    color: black;
+  }
+
+
+
+
+
+
+/* mobile responsive */
+
+@media (max-width: 850px) {
+    /* Additional adjustments for smaller screens */
+    .header img {
+      width: 50%;
+    }
+    .menu-container {
+      min-height: 450px;
+      width: 60%;
+      margin: 0;
+      padding: 0;
+    }
+    .profileimg {
+      width: 50%;
+    }
+    .profile h4{
+        font-size: 20px;
+        color: white;
+        font-size: bold;
+       margin-left: -65px;
+    }
+    .main-menus{
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: 75px;
+       
+    }
+    .addcrops,.mycrops {
+        text-align: center;
+        gap: 25px;
+        }
+  }
+  
+  @media (max-width: 600px) {
+    /* Additional adjustments for even smaller screens */
+    .main-menus{
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: 105px;
+       
+    }
+    .profile h4{
+        font-size: 20px;
+        color: white;
+        font-size: bold;
+       margin-left: -45px;
+    }
+  }
+
+
